@@ -1,4 +1,4 @@
-* {
+body {
     margin: 0px;
     border: 0px;
     font-family: 'Poppins', sans-serif;
@@ -7,9 +7,10 @@
 :root {
     --grey: #f0eef1;
     --white: #fffbfb;
-    --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     --full-width: 100vw;
-    --full-height: 100vh
+    --full-height: 100vh;
+    --shadow-bottom: 3px 1px 20px 8px rgba(0, 0, 0, 0.1);
+    --main-padding: 1rem 20rem;
 }
 
 div.container {
@@ -20,21 +21,57 @@ div.container {
     justify-content: space-between;
 }
 
+div.header,
+div.body {
+    padding: var(--main-padding);
+
+}
+
 div.header {
     height: calc(var(--full-height) / 15);
-    box-shadow: var(--shadow);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 10rem
+    box-shadow: var(--shadow-bottom);
+
 }
 
 img.user-icon {
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
 }
 
 div.body {
     background-color: var(--grey);
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+button.add-book-button {
+    border: 0px;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 10px;
+
+}
+
+button.add-book-button:hover {
+    background-color: var(--white);
+}
+
+.books-container {
+    flex: 1;
+    background-color: green;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr))
 }
