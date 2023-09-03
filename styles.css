@@ -74,8 +74,9 @@ button.add-book-button:hover {
     padding: 20px;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, 380px);
     grid-auto-rows: 300px;
+    justify-content: center;
 }
 
 .book-section {
@@ -102,6 +103,10 @@ button.add-book-button:hover {
 
 }
 
+.book-read-section:hover {
+    filter: brightness(90%);
+}
+
 input[type='checkbox'] {
     height: 20px;
     width: 20px;
@@ -122,4 +127,8 @@ input[type='checkbox'] {
     font-size: 1.5rem;
     background-color: red;
     border-color: var(--white);
+}
+
+.book-remove-button:hover {
+    filter: brightness(80%);
 }
