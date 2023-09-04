@@ -23,6 +23,32 @@
 
             </div>
 
+            <dialog id="add-book-dialog" autofocus>
+                <form id="add-book-form">
+                    <div class="form-header">Add New Book</div>
+                    <div class="form-book-name">
+                        <input type="text" id="book-name" name="book-name" placeholder="Book Name" required>
+                    </div>
+                    <div class="form-book-author">
+                        <input type="text" id="book-author" name="book-author" placeholder="Book Author" required>
+
+                    </div>
+                    <div class="form-book-pages">
+                        <input type="number" name="book-pages" id="book-pages" placeholder="Pages" required>
+
+                    </div>
+                    <div class="checkbox-section">
+                        <label for="book-read">Have You Read It ?</label>
+                        <input type="checkbox" name="book-read" id="book-read" required>
+                    </div>
+                    <div class="button-section">
+                        <button id="dialog-submit" type="submit">Submit</button>
+                        <button id="dialog-cancel" formmethod="dialog">Cancel</button>
+                    </div>
+
+                </form>
+            </dialog>
+
         </div>
     </div>
 </body>

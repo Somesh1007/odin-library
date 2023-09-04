@@ -132,3 +132,76 @@ input[type='checkbox'] {
 .book-remove-button:hover {
     filter: brightness(80%);
 }
+
+/*dialog::backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+dialog {
+    border: 0px;
+    height: 350px;
+    width: 300px;
+    background-color: var(--grey);
+    border-radius: var(--global-border-radius);
+    font-size: 1.3rem;
+    box-shadow: var(--shadow-bottom);
+    
+}
+
+dialog>form {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+dialog>form>.form-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+dialog>form input {
+    border: 0px;
+    width: 250px;
+    height: 30px;
+    border-radius: calc(var(--global-border-radius) / 2);
+    font-size: 1rem;
+    padding: 5px;
+    background-color: var(--white);
+}
+
+dialog>form input:valid {
+    border: 2px solid green;
+}
+
+dialog>form input:invalid {
+    border: 2px solid red;
+
+}
+
+dialog>form>.checkbox-section,
+dialog>form>.button-section {
+    display: flex;
+    align-items: center;
+}
+
+dialog>form>.button-section{
+    width: 230px;
+    justify-content: space-between;
+}
+
+
+dialog>form>.button-section>button {
+    background-color: var(--white);
+    font-size: 1.3rem;
+    border-radius: calc(var(--global-border-radius) / 2);
+    padding: 10px 20px;
+    border: 0px;
+
+}
+
+dialog>form>.button-section>button:hover {
+    filter: brightness(80%);
+}

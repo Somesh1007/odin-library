@@ -1,6 +1,17 @@
 const booksContainer = document.querySelector('.books-container')
 const addBookButton = document.querySelector('.add-book-button')
-addBookButton.addEventListener('click', addBookToLibrary)
+const addBookDialog = document.querySelector('#add-book-dialog')
+const dialogSubmitButton = document.querySelector('#dialog-submit')
+const dialogCancelButton = document.querySelector('#dialog-cancel')
+
+addBookButton.addEventListener('click', () => {
+    addBookDialog.showModal()
+})
+dialogSubmitButton.addEventListener('click', addBookToLibrary)
+dialogCancelButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    addBookDialog.close()
+})
 
 // Default Books
 let book1 = new Book('Lord Of The Rings', 'Tolkien', 500, false)
@@ -117,11 +128,57 @@ function reloadAllBooks() {
     displayAllBooks() // Add New DOM/HTML
 }
 
-function addBookToLibrary(event) {
-    console.log(`In addBookToLibrary : ${event}`);
-    //myLibrary.push(book)
-    //reloadAllBooks()
+function getBookDetailsFromForm() {
+    let bookName = document.querySelector('#book-name').value
+    let bookAuthor = document.querySelector('#book-author').value
+    let bookPages = document.querySelector('#book-pages').value
+    let isBookRead = document.querySelector('#book-read').checked
 
+    console.log(bookName);
+    let errorDetails = ''
+
+    if (bookName) {
+        errorDetails += 'Invalid Book Name. '
+    }
+
+    if (!bookAuthor) {
+        errorDetails += 'Invalid Book Author. '
+    }
+
+    if (!bookPages) {
+        errorDetails += 'Invalid Book Pages. '
+    }
+
+    if (!isBookRead) {
+        errorDetails += 'Check the Book Read Checkbox.'
+    }
+
+    if (bookName && bookAuthor && bookPages && isBookRead) {
+        let book = new Book(bookName, bookAuthor, bookPages, isBookRead)
+        return book
+    } else {
+        return errorDetails.trim()
+    }
+
+}
+
+function addBookToLibrary(event) {
+    event.preventDefault()
+    let book = getBookDetailsFromForm()
+
+    if (book === null) {
+        alert("Enter All the Details")
+        return null
+    } else if (typeof (book) === 'string') {
+        // Set Error Message
+        alert(`Enter All the Details : ${book}`)
+    } else {
+        // All Data Looks Goods
+        myLibrary.push(book)
+        reloadAllBooks()
+        addBookDialog.close()
+
+    }
 }
 
 function removeBookFromLibrary(event) {
