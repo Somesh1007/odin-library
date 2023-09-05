@@ -14,9 +14,9 @@ dialogCancelButton.addEventListener('click', (event) => {
 })
 
 // Default Books
-let book1 = new Book('Lord Of The Rings', 'Tolkien', 500, false)
+let book1 = new Book('Lord Of The Rings', 'JRR Tolkien', 500, false)
 let book2 = new Book('Game Of Thrones', 'George RR Martin', 1000, true)
-let book3 = new Book('Harry Potter', 'Unknown', 800, false)
+let book3 = new Book('Harry Potter', 'JK Rowling', 800, false)
 
 //Store All Books in Library Array
 let myLibrary = [book1, book2, book3]
@@ -134,7 +134,6 @@ function getBookDetailsFromForm() {
     let bookPages = document.querySelector('#book-pages').value
     let isBookRead = document.querySelector('#book-read').checked
 
-    console.log(bookName);
     let errorDetails = ''
 
     if (bookName) {
@@ -149,16 +148,20 @@ function getBookDetailsFromForm() {
         errorDetails += 'Invalid Book Pages. '
     }
 
-    if (!isBookRead) {
-        errorDetails += 'Check the Book Read Checkbox.'
-    }
-
-    if (bookName && bookAuthor && bookPages && isBookRead) {
+    if (bookName && bookAuthor && bookPages) {
         let book = new Book(bookName, bookAuthor, bookPages, isBookRead)
         return book
     } else {
         return errorDetails.trim()
     }
+
+}
+
+function clearPreviousFormData() {
+    document.querySelector('#book-name').value = ''
+    document.querySelector('#book-author').value = ''
+    document.querySelector('#book-pages').value = ''
+    document.querySelector('#book-read').checked = false
 
 }
 
@@ -173,11 +176,18 @@ function addBookToLibrary(event) {
         // Set Error Message
         alert(`Enter All the Details : ${book}`)
     } else {
-        // All Data Looks Goods
-        myLibrary.push(book)
-        reloadAllBooks()
-        addBookDialog.close()
+        // See If Book Name Already Exists in Library
+        let searchedBook = myLibrary.filter(searchBook => (searchBook.name === book.name && searchBook.author === book.author))
 
+        if (searchedBook !== null && searchedBook.length >= 1) {
+            alert(`Book Already Exists in Library : ${book.name} by ${book.author}`)
+        } else {
+            // All Data Looks Goods
+            myLibrary.push(book)
+            reloadAllBooks()
+            clearPreviousFormData()
+            addBookDialog.close()
+        }
     }
 }
 
